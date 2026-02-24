@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- SEO & Social Sharing Meta -->
-<title>How ByteDance SeedDance 2.0 Achieves Photorealistic Video — A Reverse Engineering Deep Dive</title>
-<meta name="description" content="A technical reverse engineering analysis of ByteDance's SeedDance 2.0 video generation model — exploring the suspected Transformer-Diffusion, V-JEPA, and Mixture of Experts architecture that makes it extraordinary.">
-<meta property="og:title" content="How ByteDance SeedDance 2.0 Achieves Photorealistic Video — Reverse Engineered">
+<title>How ByteDance SeeDance 2.0 Achieves Photorealistic Video — A Reverse Engineering Deep Dive</title>
+<meta name="description" content="A technical reverse engineering analysis of ByteDance's Seedance 2.0 video generation model — exploring the suspected Transformer-Diffusion, V-JEPA, and Mixture of Experts architecture that makes it extraordinary.">
+<meta property="og:title" content="How ByteDance Seedance 2.0 Achieves Photorealistic Video — Reverse Engineered">
 <meta property="og:description" content="A deep-dive analysis into the suspected architecture behind ByteDance's jaw-dropping AI video generation — V-JEPA, Transformer Diffusion, Mixture of Experts, and more.">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Bruce_Lee_1973.jpg/440px-Bruce_Lee_1973.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="How ByteDance SeedDance 2.0 Achieves Photorealistic Video — Reverse Engineered">
-<meta name="twitter:description" content="V-JEPA + Transformer Diffusion + Mixture of Experts — the architecture that may explain SeedDance's extraordinary quality under hardware restrictions.">
+<meta name="twitter:title" content="How ByteDance Seedance 2.0 Achieves Photorealistic Video — Reverse Engineered">
+<meta name="twitter:description" content="V-JEPA + Transformer Diffusion + Mixture of Experts — the architecture that may explain Seedance's extraordinary quality under hardware restrictions.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -637,9 +637,9 @@
     <div class="pub-name">AI Architecture Analysis · Deep Dive Series</div>
     <div class="category-tag">Reverse Engineering · Generative AI · Video Synthesis</div>
 
-    <h1 class="headline">How ByteDance <em>SeedDance 2.0</em> Achieves the Impossible — A Reverse Engineering Deep Dive</h1>
+    <h1 class="headline">How ByteDance <em>Seedance 2.0</em> Achieves the Impossible — A Reverse Engineering Deep Dive</h1>
 
-    <p class="deck">A frame-by-frame analysis of what makes SeedDance's AI video generation feel genuinely real — and the suspected architecture of small, specialized models, temporal world modeling, and forced efficiency that may explain how ByteDance achieved it under severe hardware restrictions.</p>
+    <p class="deck">A frame-by-frame analysis of what makes Seedance's AI video generation feel genuinely real — and the suspected architecture of small, specialized models, temporal world modeling, and forced efficiency that may explain how ByteDance achieved it under severe hardware restrictions.</p>
 
     <div class="byline-bar">
       <div>By <strong>Independent AI Analyst</strong> · In conversation with Claude (Anthropic)</div>
@@ -652,11 +652,11 @@
 <div class="hero-quote">
   <div class="hero-quote-inner">
     <div class="video-embed-box">
-      <div class="embed-label">// Featured Example — SeedDance 2.0 Output //</div>
+      <div class="embed-label">// Featured Example — Seedance 2.0 Output //</div>
       <a href="https://www.instagram.com/reel/DVFE7nlEylR/?igsh=MXBtYjZ0eDUzMzZrcA==" target="_blank" rel="noopener" class="video-link-btn">
         ▶ &nbsp; Watch: Bruce Lee vs. Jackie Chan — AI Generated
       </a>
-      <p class="video-caption">A SeedDance 2.0 generated scene depicting a showdown between Bruce Lee and Jackie Chan.<br>Notice: no choreographed stiffness, authentic fighting style signatures, physically logical motion throughout.</p>
+      <p class="video-caption">A Seedance 2.0 generated scene depicting a showdown between Bruce Lee and Jackie Chan.<br>Notice: no choreographed stiffness, authentic fighting style signatures, physically logical motion throughout.</p>
     </div>
   </div>
 </div>
@@ -664,21 +664,21 @@
 <!-- ARTICLE BODY -->
 <article>
 
-  <p class="drop-cap animate">Something extraordinary is happening in a lab in Beijing. ByteDance — the company behind TikTok — has quietly released AI-generated video that crosses a threshold most researchers thought was years away. Their <strong>SeedDance 2.0</strong> model produces footage that doesn't just look "pretty good for AI." It looks, in specific and measurable ways, like real cinematography.</p>
+  <p class="drop-cap animate">Something extraordinary is happening in a lab in Beijing. ByteDance — the company behind TikTok — has quietly released AI-generated video that crosses a threshold most researchers thought was years away. Their <strong>Seedance 2.0</strong> model produces footage that doesn't just look "pretty good for AI." It looks, in specific and measurable ways, like real cinematography.</p>
 
   <p>The particular example that sparked this analysis: a generated scene depicting a showdown between the late martial arts icon <strong>Bruce Lee</strong> and veteran action star <strong>Jackie Chan</strong>. Two men who never fought each other in real life. Yet the AI renders their confrontation with such fidelity to their individual fighting styles — Bruce Lee's explosive Jeet Kune Do snap, Jackie Chan's improvisational acrobatics — that the scene reads not as choreographed animation, but as something that <em>could have been</em> filmed.</p>
 
-  <p>This article is an attempt to reverse-engineer how that's possible. What follows is a speculative but technically grounded hypothesis about the architecture, training philosophy, and software innovations that may explain SeedDance 2.0's extraordinary quality.</p>
+  <p>This article is an attempt to reverse-engineer how that's possible. What follows is a speculative but technically grounded hypothesis about the architecture, training philosophy, and software innovations that may explain Seedance 2.0's extraordinary quality.</p>
 
   <div class="divider"><div class="divider-ornament">◆</div></div>
 
-  <h2 class="section-head">The Phenomenon: What Makes SeedDance Different</h2>
+  <h2 class="section-head">The Phenomenon: What Makes Seedance Different</h2>
 
-  <p>To appreciate why this matters technically, we need to be precise about what "realistic" means here — because SeedDance doesn't just score higher on generic quality metrics. It does something qualitatively different.</p>
+  <p>To appreciate why this matters technically, we need to be precise about what "realistic" means here — because Seedance doesn't just score higher on generic quality metrics. It does something qualitatively different.</p>
 
   <h3 class="sub-head">1. Temporal Coherence at ~99% Fidelity</h3>
 
-  <p>Most AI video generators suffer from a specific failure: objects, bodies, and faces flicker, morph, or drift between frames. The AI has essentially "forgotten" what it generated 12 frames ago. SeedDance has solved this — or come extraordinarily close. The micro-motion of every element in a scene relates to the next frame with a continuity that matches real camera footage. A hand closing into a fist flows through its full biomechanical arc. A piece of cloth doesn't teleport — it drapes, swings, settles with physical memory.</p>
+  <p>Most AI video generators suffer from a specific failure: objects, bodies, and faces flicker, morph, or drift between frames. The AI has essentially "forgotten" what it generated 12 frames ago. Seedance has solved this — or come extraordinarily close. The micro-motion of every element in a scene relates to the next frame with a continuity that matches real camera footage. A hand closing into a fist flows through its full biomechanical arc. A piece of cloth doesn't teleport — it drapes, swings, settles with physical memory.</p>
 
   <blockquote class="pull">
     <p>"The micro-motion of objects in each frame coherently relates to the next frame — it looks as if it is really being shot in real life with a video camera."</p>
@@ -700,8 +700,8 @@
 
   <div class="callout">
     <div class="callout-label">// The Hardware Paradox //</div>
-    <p>The prevailing assumption in Western AI labs has been: better video = more compute = better chips. SeedDance challenges this assumption fundamentally. ByteDance appears to have achieved comparable or superior video quality through <em>architectural ingenuity rather than raw hardware supremacy.</em></p>
-    <p>This is not unprecedented. DeepSeek demonstrated the same principle in language models — achieving frontier-level reasoning with a fraction of the compute that established assumptions said was required. SeedDance may be the video equivalent of that moment.</p>
+    <p>The prevailing assumption in Western AI labs has been: better video = more compute = better chips. Seedance challenges this assumption fundamentally. ByteDance appears to have achieved comparable or superior video quality through <em>architectural ingenuity rather than raw hardware supremacy.</em></p>
+    <p>This is not unprecedented. DeepSeek demonstrated the same principle in language models — achieving frontier-level reasoning with a fraction of the compute that established assumptions said was required. Seedance may be the video equivalent of that moment.</p>
   </div>
 
   <p>So if not raw GPU power — what explains it? This is the question our reverse engineering attempts to answer.</p>
@@ -710,10 +710,10 @@
 
   <h2 class="section-head">The Suspected Architecture: Five-Layer System</h2>
 
-  <p>Based on the observed output behavior, published research in V-JEPA, Mixture of Experts systems, and Transformer-based diffusion models, here is our best hypothesis for how SeedDance 2.0 likely works under the hood.</p>
+  <p>Based on the observed output behavior, published research in V-JEPA, Mixture of Experts systems, and Transformer-based diffusion models, here is our best hypothesis for how Seedance 2.0 likely works under the hood.</p>
 
   <div class="arch-diagram">
-    <div class="arch-title">SeedDance 2.0 — Hypothetical Architecture</div>
+    <div class="arch-title">Seedance 2.0 — Hypothetical Architecture</div>
     <div class="arch-subtitle">// Speculative Reverse Engineering Based on Output Behavior //</div>
 
     <!-- Layer 1 -->
@@ -863,7 +863,7 @@
 
   <h3 class="sub-head">Physics Priors Baked Into Weights</h3>
 
-  <p>A critical efficiency point: the physical logic that makes SeedDance feel real is almost certainly not computed at inference time through a large context window (which would require enormous GPU memory). Instead, it's <em>baked into the model weights during training</em>. The model has seen so many examples of how bodies behave under specific physical constraints that the physics is essentially memorized — retrieved at inference, not calculated. This is what makes real-time or near-real-time generation feasible without frontier-tier hardware.</p>
+  <p>A critical efficiency point: the physical logic that makes Seedance feel real is almost certainly not computed at inference time through a large context window (which would require enormous GPU memory). Instead, it's <em>baked into the model weights during training</em>. The model has seen so many examples of how bodies behave under specific physical constraints that the physics is essentially memorized — retrieved at inference, not calculated. This is what makes real-time or near-real-time generation feasible without frontier-tier hardware.</p>
 
   <div class="divider"><div class="divider-ornament">◆</div></div>
 
@@ -923,7 +923,7 @@
   <div class="callout">
     <div class="callout-label">// The Broader Implication //</div>
     <p>ByteDance may have achieved a fundamentally different scaling philosophy — one that is more biomimetic, resembling how the human brain works with specialized regions coordinating through a central executive, rather than a homogeneous mass of neurons doing everything at once.</p>
-    <p>The irony is real: hardware restrictions may have pushed Chinese AI labs toward architectures that are superior in design to what unlimited compute access incentivized in the West. The gap between "restricted" and "unrestricted" compute access may be narrowing faster than policymakers anticipated — and SeedDance 2.0 is likely exhibit A.</p>
+    <p>The irony is real: hardware restrictions may have pushed Chinese AI labs toward architectures that are superior in design to what unlimited compute access incentivized in the West. The gap between "restricted" and "unrestricted" compute access may be narrowing faster than policymakers anticipated — and Seedance 2.0 is likely exhibit A.</p>
   </div>
 
   <div class="divider"><div class="divider-ornament">◆</div></div>
@@ -939,14 +939,14 @@
   <p>Third, and perhaps most provocatively: <strong>this is a template for AI development under resource constraints</strong>. As hardware access becomes increasingly geopolitically mediated, the ability to achieve frontier results through architectural innovation rather than raw compute will become a significant competitive differentiator. ByteDance, if our analysis is correct, has cracked this earlier than most expected.</p>
 
   <div class="finding-box">
-    <p>SeedDance 2.0 may represent not just a better video model — but a proof of concept that the "scale everything" era of AI development has a worthy challenger in "architect everything" development.</p>
+    <p>Seedance 2.0 may represent not just a better video model — but a proof of concept that the "scale everything" era of AI development has a worthy challenger in "architect everything" development.</p>
   </div>
 
   <div class="divider"><div class="divider-ornament">◆</div></div>
 
   <h2 class="section-head">Caveats & Honest Uncertainty</h2>
 
-  <p>It bears stating clearly: everything in this article is speculative reverse engineering. ByteDance has not published the SeedDance 2.0 technical paper at the time of writing, and the specific architectural details remain proprietary. Our hypothesis is built on:</p>
+  <p>It bears stating clearly: everything in this article is speculative reverse engineering. ByteDance has not published the Seedance 2.0 technical paper at the time of writing, and the specific architectural details remain proprietary. Our hypothesis is built on:</p>
 
   <p>Observable output behavior and what it implies about the underlying system. Published research on V-JEPA, Mixture of Experts, and Transformer-Diffusion architectures. Precedents set by DeepSeek's efficiency innovations in language models. General reasoning about what hardware constraints force in terms of algorithmic optimization.</p>
 
@@ -967,7 +967,7 @@
     <a href="https://www.linkedin.com/sharing/share-offsite/?url=YOUR_GITHUB_PAGES_URL" target="_blank" class="share-btn share-linkedin">
       in &nbsp; Share on LinkedIn
     </a>
-    <a href="https://twitter.com/intent/tweet?text=How%20ByteDance%20SeedDance%202.0%20achieves%20photorealistic%20AI%20video%20%E2%80%94%20a%20reverse%20engineering%20deep%20dive&url=YOUR_GITHUB_PAGES_URL" target="_blank" class="share-btn share-twitter">
+    <a href="https://twitter.com/intent/tweet?text=How%20ByteDance%20Seedance%202.0%20achieves%20photorealistic%20AI%20video%20%E2%80%94%20a%20reverse%20engineering%20deep%20dive&url=YOUR_GITHUB_PAGES_URL" target="_blank" class="share-btn share-twitter">
       𝕏 &nbsp; Share on X
     </a>
     <button onclick="navigator.clipboard.writeText(window.location.href); this.textContent='✓ Copied!'; setTimeout(()=>this.textContent='⧉  Copy Link',2000)" class="share-btn share-copy">
@@ -987,7 +987,7 @@
     All frameworks referenced (V-JEPA, MoE, Transformer Diffusion) are established academic literature.<br>
     This article does not reflect any confidential knowledge of ByteDance's internal systems.</p>
     <br>
-    <p>Developed February 2026 · <strong>By David KH Chan, Independent AI Researcher</strong></p>
+    <p>Developed February 2026 · <strong>Human Analyst × Claude (Anthropic)</strong></p>
     <br>
     <p style="opacity: 0.4; font-size: 10px; letter-spacing: 2px;">TO HOST ON GITHUB PAGES: Save this file as index.html in a public repo → Settings → Pages → Deploy from main branch</p>
   </div>
