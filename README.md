@@ -1,4 +1,4 @@
-# How ByteDance SeedDance 2.0 Achieves Photorealistic AI Video — A Reverse Engineering Deep Dive
+# How ByteDance SeeDance 2.0 Achieves Photorealistic AI Video — A Reverse Engineering Deep Dive
 
 > *A speculative but technically grounded analysis of the architecture that may explain ByteDance's extraordinary AI video generation — and why hardware restrictions may have made it better, not worse.*
 
@@ -12,9 +12,9 @@
 
 ## What This Is
 
-This is a shareable editorial article reverse engineering the suspected architecture behind **ByteDance's SeedDance 2.0** AI video generation model — based entirely on observed output behavior and published academic research.
+This is a shareable editorial article reverse engineering the suspected architecture behind **ByteDance's SeeDance 2.0** AI video generation model — based entirely on observed output behavior and published academic research.
 
-It was developed through a collaborative analytical discussion between a human analyst and Claude (Anthropic's AI assistant) in February 2026, after observing a particularly striking SeedDance output that crossed a threshold most researchers thought was years away.
+It was developed through a collaborative analytical discussion between a human analyst and Claude (Anthropic's AI assistant) in February 2026, after observing a particularly striking SeeDance output that crossed a threshold most researchers thought was years away.
 
 ---
 
@@ -22,7 +22,7 @@ It was developed through a collaborative analytical discussion between a human a
 
 The analysis was sparked by this generated scene — a simulated showdown between **Bruce Lee** and **Jackie Chan**, two martial arts icons who never actually fought each other in real life:
 
-**▶ [Watch the SeedDance 2.0 example on Instagram](https://www.instagram.com/reel/DVFE7nlEylR/?igsh=MXBtYjZ0eDUzMzZrcA==)**
+**▶ [Watch the SeeDance 2.0 example on Instagram](https://www.instagram.com/reel/DVFE7nlEylR/?igsh=MXBtYjZ0eDUzMzZrcA==)**
 
 What makes it remarkable is not just visual quality — it's that both fighters move like *themselves*. Bruce Lee's explosive Jeet Kune Do snap. Jackie Chan's improvisational acrobatics. The inter-agent physical causality between them. No choreographed stiffness. No flickering or drift between frames. It reads like real footage.
 
@@ -63,14 +63,13 @@ Everything in this analysis is **speculative reverse engineering** based on:
 - Published research on V-JEPA, Mixture of Experts, Transformer-Diffusion, and Rectified Flow
 - Precedents set by DeepSeek's efficiency innovations in language models
 
-This article does not reflect any confidential or insider knowledge of ByteDance's internal systems. ByteDance has not published a SeedDance 2.0 technical paper at the time of writing. The hypothesis may be partially or entirely wrong — and that would itself be interesting.
+This article does not reflect any confidential or insider knowledge of ByteDance's internal systems. ByteDance has not published a SeeDance 2.0 technical paper at the time of writing. The hypothesis may be partially or entirely wrong — and that would itself be interesting.
 
 ---
 
 ## About
 
-Developed February 2026 as a **human analyst × AI (Claude, Anthropic)** collaborative analysis.
-
+Developed February 2026 as a speculative analysis and attempt to reverse engineer by Independent AI Researcher, David KH Chan
 The goal was to think carefully and publicly about what architectural innovations might explain an observed leap in AI video quality — and what it signals about the direction of the field.
 
 ---
